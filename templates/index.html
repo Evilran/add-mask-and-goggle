@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta charset="utf-8" />
+  <title>给头像添加口罩及护目镜</title>
+  <link rel="icon" href="static/favicon.ico" type="image/x-icon" />
+  <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="http://cdn.bootcss.com/jquery/1.11.2/jquery.min.js"></script>
+  <script src="http://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+  <!-- Nav tabs -->
+  <nav class="navbar navbar-default">
+    <div class="container-fluid">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+        <a class="navbar-brand" href="#"><strong>口罩 & 护目镜</strong></a>
+      </div>
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav">
+          <li role="presentation" class="active"><a href="#url" aria-controls="url" role="tab"
+              data-toggle="tab">粘贴图片地址</a>
+          <li role="presentation"><a href="#image" aria-controls="image" role="tab" data-toggle="tab">上传图片</a>
+          </li>
+
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="https://github.com/Evilran/image-search-raspberry-pi">Github</a></li>
+      </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+  </nav>
+
+  <!-- Tab panes -->
+
+  <div class="d-flex justify-content-center w-100">
+    <div class="text-center w-50">
+      <img style="height:100px; width: 100px" src="static/logo.png" alt="" />
+      <br><br>
+      <h1><strong>给头像添加口罩及护目镜</strong></h1>
+      <br>
+      <p>
+        珍爱生命，为预防2020新型冠狀病毒肺炎，请积极佩戴口罩及护目镜。<br><br>
+        <font size="3" face="courier">-- Evi1ran</font>
+      </p>
+    </div>
+  </div>
+  <div class="col-md-10 col-md-offset-1 tab-content" style="margin-top: 10%;">
+    {% if alert %}
+    <div class="alert alert-danger alert-dismissible" role="alert">
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+          aria-hidden="true">&times;</span></button>
+      <strong> Oops!</strong> {{alert}}
+    </div>
+    {% endif %}
+    <div class="tab-pane active" id="url" role="tabpanel">
+      <form action="/url" method="post" enctype="multipart/form-data">
+        <div class="col-md-6 col-md-offset-3">
+          <div class="form-group">
+            <label for="mask">口罩</label>
+            <select class="form-control" name="mask">
+              <option value="0">N95-绿</option>
+              <option value="1">3M-白</option>
+              <option value="4">3M-灰</option>
+              <option value="3">HW-黑</option>
+              <option value="2">卡通-白</option>
+            </select>
+          </div>
+          <div class="form-check">
+            <input type="checkbox" class="form-check-input" name="goggle" value="goggle">
+            <label class="form-check-label" for="goggle">护目镜</label>
+          </div>
+          <div class="input-group">
+            <input type="text" name="url" class="form-control" placeholder="请输入图片地址...">
+            <span class="input-group-btn">
+              <input type="submit" class="btn btn-primary" value="上传"></span>
+            </span>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <div role="tabpanel" class="tab-pane" id="image">
+      <form action="/add" method="post" enctype="multipart/form-data">
+        <div class="col-md-6 col-md-offset-3">
+          <div class="form-group">
+            <label for="mask">口罩</label>
+            <select class="form-control" name="mask">
+              <option value="0">N95-绿</option>
+              <option value="1">3M-白</option>
+              <option value="4">3M-灰</option>
+              <option value="3">HW-黑</option>
+              <option value="2">卡通-白</option>
+            </select>
+          </div>
+          <div class="form-check">
+            <input type="checkbox" class="form-check-input" name="goggle" value="goggle">
+            <label class="form-check-label" for="goggle">护目镜</label>
+          </div>
+          <div class="form-group">
+            <input type="file" name="image">
+          </div>
+          <div class="form-group"><input type="submit" class="btn btn-primary" value="上传"></div>
+        </div>
+      </form>
+    </div>
+
+  </div>
+  <div class="col-md-10 col-md-offset-1 tab-content" style="margin-top: 5%;">
+    {% if output %}
+    <div class="alert alert-success alert-dismissible" role="alert">
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+          aria-hidden="true">&times;</span></button>
+      <strong>添加成功！</strong>
+    </div>
+    <br>
+    <img class="img-responsive center-block" src="{{output}}" alt="" />
+    <br>
+    {% endif %}
+  </div>
+</body>
+
+</html>
