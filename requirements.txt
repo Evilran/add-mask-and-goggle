@@ -1,5 +1,5 @@
 numpy==1.17.4
 Flask>=1.0.0
 requests==2.22.0
-opencv-python==4.2.0.32
+opencv-python==4.8.1.78
 dlib==19.17.99
